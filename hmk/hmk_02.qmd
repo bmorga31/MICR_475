@@ -1,0 +1,29 @@
+---
+title: "hmk_02"
+format: gfm
+editor: visual
+---
+
+## Hmk 2
+
+Homework 2. Due Friday, September 9th.
+
+## Running Code
+
+```{r, message=FALSE}
+library(tidyverse)
+
+a <- 5
+b <- 10
+
+a > b
+
+ls()
+
+```
+
+```{r}
+rm(list=ls())
+
+ls()
+```
