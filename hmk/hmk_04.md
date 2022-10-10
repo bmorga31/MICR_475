@@ -1,0 +1,71 @@
+hmk_04
+================
+Bailey Morgan
+
+# Homework 4 ggplot
+
+Note: I don’t really think this is a good plot… but it’s as good as *I*
+could get it. :/
+
+``` r
+library(tidyverse)
+
+four.minutes <- read_csv("good_data?.csv")
+```
+
+I had to re-reorganize my data to make it R-friendly, and I only
+included one time point at 4 minutes beacuse I couldn’t figure out a
+good way to do it over time.
+
+## Attempt 1
+
+``` r
+good.plot <- ggplot(four.minutes)+
+  geom_point(aes(x = Test.Condition, y = TE))+
+  geom_point(aes(x = Test.Condition, y = TE_IsoAMP), color = "blue")+
+  geom_point(aes(x = Test.Condition, y = `0.5M.EDTA`), color = "red")+
+  geom_point(aes(x = Test.Condition, y = `0.3M.EDTA`), color = "yellow")+
+  geom_point(aes(x = Test.Condition, y = `160mM.EDTA`), color = "green")+
+  scale_y_continuous(name = "Absorbance at 655 nm")
+print(good.plot)
+```
+
+![](hmk_04_files/figure-gfm/unnamed-chunk-2-1.png)
+
+Normally, I represent my data in a bar graph, but using the scatterplot
+shows each data point, so outliers can be assesed without skewing the
+data by using an average or median. This plot was made by individually
+plotting the x and y variables to the geom and assigning them a color.
+However, this does not print the plot with a legend, so you have to look
+at the code to figure out whick color is what condition.
+
+## Attempt 2
+
+``` r
+better.plot <- ggplot(four.minutes, aes(x = Test.Condition)) +
+  geom_point(aes(y = TE, color = "TE")) +
+  geom_point(aes(y = TE_IsoAMP, color = "TE_IsoAMP")) +
+  geom_point(aes(y = `0.5M.EDTA`, color = "0.5M.EDTA"))+
+  geom_point(aes(y = `0.3M.EDTA`, color = "0.3M.EDTA"))+
+  geom_point(aes(y = `160mM.EDTA`, color = "160mM.EDTA"))+
+  scale_y_continuous(name = "Absorbance at 655 nm")+
+  scale_x_discrete(name = "Test Condition")
+print(better.plot)
+```
+
+![](hmk_04_files/figure-gfm/unnamed-chunk-3-1.png)
+
+After a bit of googling, I found that a little bit of rearranging
+produced the same plot, but with come changes to the colors as well as
+the addition of a legend.
+
+When I daved this using `ggsave`, I made the height larger than the
+width so that the verticle axis would be longer so the points are a bit
+more spread out, because the default dimensions result in the points
+overlapping one another a bunch, which makes it more difficult to
+compare.
+
+Again, I don’t think that this is necessarily the best way to do this,
+and this plot is not acually that useful on its own for the pruposes I
+need it for, but I was not able to do anything more complicated at this
+time.
