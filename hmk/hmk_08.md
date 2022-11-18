@@ -4,7 +4,7 @@ Bailey Morgan
 
 # Q1: Summarizing operations and exploratory data analysis
 
-## Q1a
+## Q1a.
 
 Download `experiment1.csv` from Canvas (under files). This reports two
 variables from an experiment that has four treatments. Creatively, the
